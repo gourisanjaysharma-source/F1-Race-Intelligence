@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 Race Intelligence</title>
+  <script type="module" src="https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f2f4f7; color: #202632; }
+    header { background: #151923; color: white; padding: 25px 5%; border-bottom: 4px solid #e10600; }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: #c9ced8; }
+    main { padding: 24px 4%; }
+    .toolbar { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+    button { border: 0; border-radius: 6px; padding: 12px 22px; background: white; color: #202632; font-size: 15px; font-weight: bold; cursor: pointer; }
+    button.active { background: #e10600; color: white; }
+    .panel { background: white; padding: 12px; border-radius: 8px; box-shadow: 0 2px 12px #00000012; }
+    tableau-viz { display: block; width: 100%; height: 80vh; min-height: 650px; }
+    footer { text-align: center; padding: 18px; color: #626b78; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Formula 1 Race Intelligence</h1>
+    <p>Explore driver performance, team rankings, race trends and reliability.</p>
+  </header>
+  <main>
+    <div class="toolbar">
+      <button id="dashboardBtn" class="active" type="button" onclick="showView('dashboard')">Dashboard</button>
+      <button id="storyBtn" type="button" onclick="showView('story')">Story</button>
+    </div>
+
+    <div class="panel">
+      <tableau-viz id="f1View"
+        src="https://public.tableau.com/views/f1tableauproject/F1RACEINTELLIGENCEDASHBOARD"
+        toolbar="bottom"
+        hide-tabs>
+      </tableau-viz>
+    </div>
+  </main>
+  <footer>Formula 1 Race Intelligence | Powered by Tableau Public</footer>
+
+  <script>
+    // Dashboard URL from the published Tableau view.
+    const dashboardURL = "https://public.tableau.com/views/f1tableauproject/F1RACEINTELLIGENCEDASHBOARD";
+
+    // Story URL confirmed by the user's Tableau embed code:
+    // <param name='name' value='f1tableauproject/Formula1RaceIntelligence' />
+    const storyURL = "https://public.tableau.com/views/f1tableauproject/Formula1RaceIntelligence";
+
+    function showView(view) {
+      const viz = document.getElementById("f1View");
+      viz.src = view === "story" ? storyURL : dashboardURL;
+      document.getElementById("dashboardBtn").classList.toggle("active", view === "dashboard");
+      document.getElementById("storyBtn").classList.toggle("active", view === "story");
+    }
+  </script>
+</body>
+</html>
