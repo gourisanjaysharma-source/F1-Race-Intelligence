@@ -92,7 +92,7 @@ The Flask application embeds the published Tableau visualizations. An internet c
 
 ## Author
 
-**Gouri Sanjay Sharma**
+**Gouri Sharma**
 
 ## License and Usage
 
